@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
@@ -6,11 +6,6 @@ import { useLocation } from "react-router-dom";
 
 const Login = () => {
   const location = useLocation();
-  //   const [successMessage, setSuccessMessage] = useState(false);
-
-  //   if (location.state) {
-  //     setSuccessMessage(true);
-  //   }
 
   return (
     <>
@@ -23,7 +18,6 @@ const Login = () => {
           }
         >
           <p>{location.state.msg}</p>
-          {/* {location.state.msg && <p>{location.state.msg}</p>} */}
         </div>
       ) : (
         <div></div>

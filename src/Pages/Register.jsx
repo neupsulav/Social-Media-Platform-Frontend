@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 const Register = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
-  const [registerSuccess, setRegisterSuccess] = useState("false");
 
   const [user, setUser] = useState({
     name: "",
