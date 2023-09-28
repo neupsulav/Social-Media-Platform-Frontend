@@ -1,12 +1,74 @@
-import React from "react";
-// import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { BsPen } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [registerSuccess, setRegisterSuccess] = useState("false");
+
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    username: "",
+    password: "",
+    cpassword: "",
+  });
+
+  let name, value;
+  const handleInputs = (event) => {
+    name = event.target.name;
+    value = event.target.value;
+
+    setUser({ ...user, [name]: value });
+  };
+
+  const postData = async (e) => {
+    e.preventDefault();
+
+    const { name, username, email, password, cpassword } = user;
+
+    const res = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        username: username,
+        password: password,
+        cpassword: cpassword,
+      }),
+    });
+
+    if (res.status === 400) {
+      setErrorMessage("Please fill all the fields properly");
+    } else if (res.status === 406) {
+      setErrorMessage("Passwords does not match");
+    } else if (res.status === 500) {
+      setErrorMessage("Something went wrong, Internal server error");
+    } else if (res.status === 403) {
+      setErrorMessage("User already exists");
+    } else {
+      navigate("/login", {
+        state: {
+          msg: "User registration successful. We have sent you a mail. Please verify your email to login",
+        },
+      });
+    }
+  };
   return (
     <>
+      <div
+        className={
+          errorMessage ? "error_message show_error_message" : "error_message"
+        }
+      >
+        <p>{errorMessage}</p>
+      </div>
       <div className="login_page">
         <div className="login_Container">
           <div className="login_form">
@@ -31,6 +93,8 @@ const Register = () => {
                     placeholder="Enter your name"
                     autoComplete="off"
                     required
+                    value={user.name}
+                    onChange={handleInputs}
                   />
                 </div>
 
@@ -42,6 +106,8 @@ const Register = () => {
                     name="username"
                     placeholder="Enter your username"
                     required
+                    value={user.username}
+                    onChange={handleInputs}
                   />
                 </div>
 
@@ -53,6 +119,8 @@ const Register = () => {
                     name="email"
                     placeholder="Enter your email"
                     required
+                    value={user.email}
+                    onChange={handleInputs}
                   />
                 </div>
 
@@ -64,6 +132,8 @@ const Register = () => {
                     name="password"
                     placeholder="Enter your password"
                     required
+                    value={user.password}
+                    onChange={handleInputs}
                   />
                 </div>
 
@@ -75,11 +145,16 @@ const Register = () => {
                     name="cpassword"
                     placeholder="Enter password again"
                     required
+                    value={user.cpassword}
+                    onChange={handleInputs}
                   />
                 </div>
               </div>
               <div>
-                <button className="login_btn"> Register </button>
+                <button className="login_btn" onClick={postData}>
+                  {" "}
+                  Register{" "}
+                </button>
               </div>
               {/* <div className="register_message">
                 <p>

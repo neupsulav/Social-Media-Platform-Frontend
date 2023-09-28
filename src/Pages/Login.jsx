@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Login = () => {
+  const location = useLocation();
+  //   const [successMessage, setSuccessMessage] = useState(false);
+
+  //   if (location.state) {
+  //     setSuccessMessage(true);
+  //   }
+
   return (
     <>
+      {location.state ? (
+        <div
+          className={
+            location.state.msg
+              ? "success_message show_success_msg"
+              : "success_message"
+          }
+        >
+          <p>{location.state.msg}</p>
+          {/* {location.state.msg && <p>{location.state.msg}</p>} */}
+        </div>
+      ) : (
+        <div></div>
+      )}
       <div className="login_page">
         <div className="login_Container">
           <div className="login_form">

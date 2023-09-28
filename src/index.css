@@ -147,3 +147,40 @@
     width: 100%;
   }
 }
+
+/* for error message */
+
+.error_message {
+  height: auto;
+  width: 100vw;
+  position: fixed;
+  background-color: red;
+  display: none;
+}
+
+.error_message p {
+  margin: 5px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.show_error_message {
+  display: block;
+}
+
+/* for success message */
+
+.success_message {
+  height: auto;
+  width: 100vw;
+  position: fixed;
+  background-color: rgb(1, 215, 1);
+}
+
+.success_message p {
+  margin: 5px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
