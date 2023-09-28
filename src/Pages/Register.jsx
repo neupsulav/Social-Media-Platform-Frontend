@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { BsPen } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -38,6 +38,8 @@ const Register = () => {
                   <BsPen className="login_icons" />
                   <input
                     type="text"
+                    id="username"
+                    name="username"
                     placeholder="Enter your username"
                     required
                   />
@@ -45,13 +47,21 @@ const Register = () => {
 
                 <div className="data_input">
                   <AiOutlineMail className="login_icons" />
-                  <input type="email" placeholder="Enter your email" required />
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                  />
                 </div>
 
                 <div className="data_input">
                   <RiLockPasswordLine className="login_icons" />
                   <input
                     type="password"
+                    id="password"
+                    name="password"
                     placeholder="Enter your password"
                     required
                   />
@@ -61,6 +71,8 @@ const Register = () => {
                   <RiLockPasswordLine className="login_icons" />
                   <input
                     type="password"
+                    id="cpassword"
+                    name="cpassword"
                     placeholder="Enter password again"
                     required
                   />
