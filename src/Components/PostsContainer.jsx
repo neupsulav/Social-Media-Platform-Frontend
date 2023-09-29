@@ -1,26 +1,11 @@
 import React from "react";
-import Post from "./Post";
+import Posts from "./Posts";
 
 const PostsContainer = () => {
   return (
     <>
       <div className="post_container">
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        <Posts />
       </div>
     </>
   );

@@ -12,7 +12,7 @@ const SidebarFullScreen = () => {
           {Links.map((item) => {
             const Icon = item.icon;
             return (
-              <Link to="" className="link_fullScreen_sidebar">
+              <Link key={item.id} to="" className="link_fullScreen_sidebar">
                 <Icon />
                 <p>Home</p>
               </Link>

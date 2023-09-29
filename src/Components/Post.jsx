@@ -1,28 +1,68 @@
-import React from "react";
-import { AiOutlineLike, AiFillLike, AiOutlineSend } from "react-icons/ai";
+import React, { useState } from "react";
+import {
+  AiOutlineLike,
+  // AiFillLike,
+  AiOutlineSend,
+  AiOutlineDown,
+} from "react-icons/ai";
+import { CiSquareChevLeft, CiSquareChevRight } from "react-icons/ci";
+import Comments from "./Comments";
+// import Cookies from "universal-cookie";
 
-const Post = () => {
+const Post = ({ props }) => {
+  const [seeComments, setSeeComments] = useState(false);
+
+  const [imgIndex, setImgIndex] = useState(0);
+
+  const checkNumber = (number) => {
+    if (number > props.images.length - 1) {
+      return 0;
+    } else if (number < 0) {
+      return props.images.length - 1;
+    } else {
+      return number;
+    }
+  };
+
+  const leftButtonClick = () => {
+    setImgIndex((index) => {
+      let newNumber = index + 1;
+      return checkNumber(newNumber);
+    });
+  };
+  const rightButtonClick = () => {
+    setImgIndex((index) => {
+      let newNumber = index - 1;
+      return checkNumber(newNumber);
+    });
+  };
+
+  //   console.log(props._id);
+
   return (
     <>
+      {/* {posts.map((post, index) => { */}
+      {/* return ( */}
       <div className="post">
         <div className="post_identity">
-          <img
-            src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg"
-            alt="profile"
-          />
+          <img src={props.createdBy.image} alt="profile" />
           <div className="post_username">
-            <p className="post_name">Name</p>
+            <p className="post_name">{props.createdBy.name}</p>
 
-            <p>2020-09-28</p>
+            <p>{props.createdAt.substring(0, 10)}</p>
           </div>
         </div>
         <div className="post_content">
-          <p className="post_caption">This is a caption</p>
+          <p className="post_caption">{props.caption}</p>
           <div className="post_images">
-            <img
-              src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg"
-              alt=""
-            />
+            <div className="swipe_btn swipe_left">
+              <CiSquareChevLeft onClick={leftButtonClick} />
+            </div>
+
+            <div className="swipe_btn swipe_right">
+              <CiSquareChevRight onClick={rightButtonClick} />
+            </div>
+            <img src={props.images[imgIndex]} alt="postImages" />
           </div>
         </div>
         <div className="like_comment_section">
@@ -30,7 +70,6 @@ const Post = () => {
             <AiOutlineLike className="like_icon" />
           </button>
           <div className="comment_section">
-            {/* <div className="comment_input"> */}
             <input
               type="text"
               id="comment"
@@ -40,10 +79,24 @@ const Post = () => {
             <button className="comment_btn" type="submit">
               <AiOutlineSend />
             </button>
-            {/* </div> */}
           </div>
         </div>
+
+        <button
+          className="see_comments"
+          onClick={() => {
+            setSeeComments(!seeComments);
+          }}
+        >
+          See comments <AiOutlineDown />
+        </button>
+
+        <div className="comments">
+          {seeComments ? <Comments /> : <div></div>}
+        </div>
       </div>
+      {/* ); */}
+      {/* })} */}
     </>
   );
 };
