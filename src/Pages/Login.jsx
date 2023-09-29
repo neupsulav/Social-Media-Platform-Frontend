@@ -1,14 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 const Login = () => {
+  const navigate = useNavigate();
   const location = useLocation();
+  const [errorMessage, setErrorMessage] = useState("");
+  const cookies = new Cookies();
+
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  let name, value;
+  const handleInputs = (event) => {
+    name = event.target.name;
+    value = event.target.value;
+
+    setUser({ ...user, [name]: value });
+  };
+
+  const postData = async (e) => {
+    e.preventDefault();
+
+    const { email, password } = user;
+
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+
+    const response = await res.json();
+
+    if (res.status === 400) {
+      setErrorMessage("Please fill all the fields");
+    } else if (res.status === 401) {
+      setErrorMessage("Invalid user credentials");
+    } else if (res.status === 406) {
+      setErrorMessage("Email is not verified");
+    } else {
+      // setting cookies
+      cookies.set("jwtToken", response.token, {
+        path: "/",
+        expires: new Date(Date.now() + 2629800000),
+      });
+
+      // navigate to home page
+      navigate("/");
+    }
+  };
 
   return (
     <>
+      {/* for email registration message */}
       {location.state ? (
         <div
           className={
@@ -22,6 +76,17 @@ const Login = () => {
       ) : (
         <div></div>
       )}
+
+      {/* for error message */}
+      <div
+        className={
+          errorMessage ? "error_message show_error_message" : "error_message"
+        }
+      >
+        <p>{errorMessage}</p>
+      </div>
+
+      {/* login page */}
       <div className="login_page">
         <div className="login_Container">
           <div className="login_form">
@@ -43,6 +108,8 @@ const Login = () => {
                     placeholder="Enter your email"
                     autoComplete="off"
                     required
+                    value={user.name}
+                    onChange={handleInputs}
                   />
                 </div>
 
@@ -54,11 +121,16 @@ const Login = () => {
                     name="password"
                     placeholder="Enter your password"
                     required
+                    value={user.password}
+                    onChange={handleInputs}
                   />
                 </div>
               </div>
               <div>
-                <button className="login_btn"> Login </button>
+                <button type="submit" onClick={postData} className="login_btn">
+                  {" "}
+                  Login{" "}
+                </button>
               </div>
               <div className="register_message">
                 <p>

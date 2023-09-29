@@ -61,6 +61,7 @@ const Register = () => {
   };
   return (
     <>
+      {/* for displaying error message */}
       <div
         className={
           errorMessage ? "error_message show_error_message" : "error_message"
@@ -68,6 +69,8 @@ const Register = () => {
       >
         <p>{errorMessage}</p>
       </div>
+
+      {/* for registration page */}
       <div className="login_page">
         <div className="login_Container">
           <div className="login_form">
