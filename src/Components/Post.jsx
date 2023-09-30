@@ -18,6 +18,7 @@ const Post = ({ props }) => {
   const cookie = cookies.get("jwtToken");
   const [comment, setComment] = useState("");
   const [commentList, setCommentList] = useState([]);
+  const [seeMore, setSeeMore] = useState(false);
 
   const makeComment = (event) => {
     let newText = event.target.value;
@@ -26,18 +27,20 @@ const Post = ({ props }) => {
 
   // for sending comment to backend
   const sendComment = async () => {
-    await fetch(`/api/post/comment/${props._id}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${cookie}`,
-      },
-      body: JSON.stringify({
-        commentContent: comment,
-      }),
-    });
+    if (comment) {
+      await fetch(`/api/post/comment/${props._id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${cookie}`,
+        },
+        body: JSON.stringify({
+          commentContent: comment,
+        }),
+      });
 
-    setComment("");
+      setComment("");
+    }
   };
 
   // for fetching comments
@@ -50,6 +53,7 @@ const Post = ({ props }) => {
     });
 
     let postData = await data.json();
+
     setCommentList(postData.comments);
   };
 
@@ -112,17 +116,75 @@ const Post = ({ props }) => {
           </div>
         </div>
         <div className="post_content">
-          <p className="post_caption">{props.caption}</p>
-          <div className="post_images">
-            <div className="swipe_btn swipe_left">
+          {props.caption ? (
+            <p
+              className="post_caption"
+              onClick={() => {
+                setSeeMore(!seeMore);
+              }}
+            >
+              {seeMore
+                ? props.caption
+                : `${props.caption.substring(0, 300)}.....`}
+              {/* <button>{seeMore ? "See less" : "See more"}</button> */}
+            </p>
+          ) : (
+            <div></div>
+          )}
+
+          <div
+            className={
+              props.images.length > 0 ? "post_images" : "hide_post_images"
+            }
+          >
+            <div
+              className={
+                props.images.length > 1
+                  ? "swipe_btn swipe_left"
+                  : "swipe_btn swipe_left hide_btn"
+              }
+            >
               <CiSquareChevLeft onClick={leftButtonClick} />
             </div>
 
-            <div className="swipe_btn swipe_right">
+            <div
+              className={
+                props.images.length > 1
+                  ? "swipe_btn swipe_right"
+                  : "swipe_btn swipe_right hide_btn"
+              }
+            >
               <CiSquareChevRight onClick={rightButtonClick} />
             </div>
-            <img src={props.images[imgIndex]} alt="postImages" />
+            <img src={props.images[imgIndex]} alt="" />
           </div>
+
+          {/* {props.images ? (
+            <div className="post_images">
+              <div
+                className={
+                  props.images.length > 1
+                    ? "swipe_btn swipe_left"
+                    : "swipe_btn swipe_left hide_btn"
+                }
+              >
+                <CiSquareChevLeft onClick={leftButtonClick} />
+              </div>
+
+              <div
+                className={
+                  props.images.length > 1
+                    ? "swipe_btn swipe_right"
+                    : "swipe_btn swipe_right hide_btn"
+                }
+              >
+                <CiSquareChevRight onClick={rightButtonClick} />
+              </div>
+              <img src={props.images[imgIndex]} alt="" />
+            </div>
+          ) : (
+            <div></div>
+          )} */}
         </div>
         <div className="like_comment_section">
           <div className="like_section">

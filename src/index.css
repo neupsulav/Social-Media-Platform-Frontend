@@ -201,6 +201,7 @@
   align-items: flex-start;
   padding-top: 60px;
   box-shadow: 8px 8px 50px var(--shadow-color);
+  z-index: 99;
 }
 
 .navbar_container {
@@ -372,6 +373,21 @@
 }
 
 /* for post container */
+
+.no_posts_msg {
+  height: 200px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no_posts_msg p {
+  color: var(--primary-color);
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .post {
   margin-top: 30px;
   padding: 10px;
@@ -433,14 +449,30 @@
 }
 
 .post_images {
-  height: 90%;
+  height: 500px;
+  /* min-height: 500px; */
   width: 100%;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px 20px 0px;
+}
+
+.hide_post_images {
+  /* height: 0px; */
+  display: none;
 }
 
 .post_images img {
-  height: 100%;
-  width: 100%;
+  max-height: 500px;
+  max-width: 100%;
+  /* object-fit: cover; */
+  /* background-position: ; */
+}
+
+.hide_btn {
+  display: none;
 }
 
 .like_section {
