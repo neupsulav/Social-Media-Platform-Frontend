@@ -1,19 +1,16 @@
 import React from "react";
 
-const Comments = () => {
+const Comments = ({ data }) => {
   return (
     <>
       <div className="comment_container">
-        <img
-          src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg"
-          alt="profile"
-        />
+        <img src={data.image} alt="profile" />
         <div className="comment_username">
           <p className="comment_user_name">
-            <b>Name</b>
+            <b>{data.name}</b>
           </p>
 
-          <p>Wow wonderful image</p>
+          <p>{data.commentContent}</p>
         </div>
       </div>
     </>

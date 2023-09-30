@@ -427,6 +427,11 @@
   /* background-color: rgb(192, 155, 108); */
 }
 
+.like_comment_section button {
+  width: 80px;
+  font-size: 30px;
+}
+
 .post_images {
   height: 90%;
   width: 100%;
@@ -438,11 +443,31 @@
   width: 100%;
 }
 
+.like_section {
+  margin: 10px 0px 10px 10px;
+  font-size: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 .like_btn {
   height: 45px;
-  font-size: 30px;
   width: 100%;
+  border: none;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border-radius: 5px;
+  /* transition: 0.5s; */
 }
+
+/* .like_btn:hover {
+  background-color: var(--secondary-color);
+  color: #1f9bed;
+  border: 1px solid var(--primary-color);
+} */
 
 /* .like_icon {
   font-size: 30px;
@@ -510,6 +535,7 @@
 }
 
 .see_comments {
+  width: 150px;
   margin-top: 20px;
   padding: 10px;
   background-color: var(--primary-color);
