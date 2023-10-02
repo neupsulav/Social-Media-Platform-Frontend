@@ -5,11 +5,13 @@ import Login from "./Pages/Login";
 import Error from "./Pages/Error";
 import Home from "./Pages/Home";
 import SelfProfile from "./Pages/SelfProfile";
+import UserProfile from "./Pages/UserProfile";
 
 const App = () => {
   return (
     <>
       <Routes>
+        <Route path="/:username" element={<UserProfile />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route exact path="/" element={<Home />} />

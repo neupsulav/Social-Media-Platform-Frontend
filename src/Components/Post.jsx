@@ -9,6 +9,7 @@ import {
 import { CiSquareChevLeft, CiSquareChevRight } from "react-icons/ci";
 import Comments from "./Comments";
 import Cookies from "universal-cookie";
+import { Link } from "react-router-dom";
 
 const Post = ({ props }) => {
   const [seeComments, setSeeComments] = useState(false);
@@ -110,7 +111,13 @@ const Post = ({ props }) => {
         <div className="post_identity">
           <img src={props.createdBy.image} alt="profile" />
           <div className="post_username">
-            <p className="post_name">{props.createdBy.name}</p>
+            <Link
+              style={{ textDecoration: "none", color: "black" }}
+              className="user_profile_link"
+              to={`/${props.createdBy.username}`}
+            >
+              <p className="post_name">{props.createdBy.name}</p>
+            </Link>
 
             <p>{props.createdAt.substring(0, 10)}</p>
           </div>

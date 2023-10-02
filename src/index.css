@@ -417,16 +417,13 @@
   gap: 15px;
 }
 
-/* .post_username {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
-  gap: 0px;
-} */
-
 .post_name {
   font-weight: bold;
+  transition: 0.5s;
+}
+
+.post_name:hover {
+  color: var(--primary-color);
 }
 
 .post_identity img {
@@ -638,6 +635,14 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
+}
+
+.user_intro_name {
+  transition: 0.5s;
+}
+
+.user_intro_name:hover {
+  color: var(--primary-color);
 }
 
 .recommendation_follow_btn {

@@ -5,8 +5,10 @@ import Cookies from "universal-cookie";
 import UserIntro from "../Components/UserIntro";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import Post from "../Components/Post";
+import { useParams } from "react-router-dom";
 
 const SelfProfile = () => {
+  const { username } = useParams();
   const cookies = new Cookies();
   const cookie = cookies.get("jwtToken");
   const [profileData, setProfileData] = useState();
@@ -16,12 +18,12 @@ const SelfProfile = () => {
   // to check if to show followers modal
   const [followersModal, setFollowersModal] = useState(false);
   // for list of people following
-  const [following, setFollowing] = useState({});
+  const [following, setFollowing] = useState([]);
   // for list of followers
-  const [followers, setFollowers] = useState({});
+  const [followers, setFollowers] = useState([]);
 
   const fetchProfileData = async () => {
-    const res = await fetch("api/profile", {
+    const res = await fetch(`api/user/profile/${username}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${cookie}`,
@@ -31,12 +33,12 @@ const SelfProfile = () => {
     const response = await res.json();
     // console.log(response);
     setProfileData(response);
-    // console.log(profileData);
+    // console.log(profileData.userProfileData._id);
     setIfDataFetched(true);
   };
 
   const fetchFollowingData = async () => {
-    const res = await fetch("api/profile/following", {
+    const res = await fetch(`api/user/profile/following/${username}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${cookie}`,
@@ -44,11 +46,12 @@ const SelfProfile = () => {
     });
 
     const response = await res.json();
+    // console.log(response);
     setFollowing(response);
   };
 
   const fetchFollowersData = async () => {
-    const res = await fetch("api/profile/followers", {
+    const res = await fetch(`api/user/profile/followers/${username}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${cookie}`,
@@ -59,6 +62,8 @@ const SelfProfile = () => {
     // console.log(response);
     setFollowers(response);
   };
+  //   console.log(followers);
+  //   console.log(following);
 
   useEffect(() => {
     fetchProfileData();
@@ -71,10 +76,10 @@ const SelfProfile = () => {
       <>
         <div className="profile_container">
           <div className="profile_identity">
-            <img src={profileData.profileData.image} alt="profile" />
-            <p className="user_name">{profileData.profileData.name}</p>
-            <p>{profileData.profileData.username}</p>
-            <p>{profileData.profileData.email}</p>
+            <img src={profileData.userProfileData.image} alt="profile" />
+            <p className="user_name">{profileData.userProfileData.name}</p>
+            <p>{profileData.userProfileData.username}</p>
+            <p>{profileData.userProfileData.email}</p>
             <div className="profile_follow">
               <div
                 className="following"

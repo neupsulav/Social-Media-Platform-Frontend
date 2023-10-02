@@ -1,18 +1,21 @@
 import React from "react";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
+import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const UserIntro = ({ props }) => {
-  const cookies = new Cookies();
-  const cookie = cookies.get("jwtToken");
+  // const navigate = useNavigate();
+  // const cookies = new Cookies();
+  // const cookie = cookies.get("jwtToken");
 
-  const followUser = async (id) => {
-    await fetch(`api/user/follow/${id}`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${cookie}`,
-      },
-    });
-  };
+  // const followUser = async (id) => {
+  //   await fetch(`api/user/follow/${id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       Authorization: `Bearer ${cookie}`,
+  //     },
+  //   });
+  // };
 
   // console.log(props._id);
   return (
@@ -21,21 +24,34 @@ const UserIntro = ({ props }) => {
         <div className="user_identity">
           <img src={props.image} alt="userImg" />
           <div className="user_intro_username">
-            <p className="user_intro_name">
-              <b>{props.name}</b>
-            </p>
+            <Link
+              style={{ textDecoration: "none", color: "black" }}
+              to={`/${props.username}`}
+            >
+              <p className="user_intro_name">
+                <b>{props.name}</b>
+              </p>
+            </Link>
+
+            {/* <p
+              onClick={() => {
+                navigate('/props.username');
+              }}
+            >
+              {props.name}
+            </p> */}
 
             <p className="user_intro_username">{props.username}</p>
           </div>
         </div>
-        <button
+        {/* <button
           className="recommendation_follow_btn"
           onClick={() => {
             followUser(props._id);
           }}
         >
           Follow
-        </button>
+        </button> */}
       </div>
     </>
   );
