@@ -206,7 +206,7 @@
 
 .navbar_container {
   background-color: var(--primary-color);
-  height: 60px;
+  height: 40px;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -257,7 +257,7 @@
 }
 
 .link {
-  height: 50px;
+  height: 40px;
   width: 100%;
   border: 1px solid var(--primary-color);
   display: flex;
@@ -285,7 +285,7 @@
   height: 100vh;
   width: 100vw;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   /* padding-top: 10px; */
 }
@@ -293,7 +293,7 @@
 .post_container {
   /* margin-left: 20px; */
   height: 100vh;
-  width: 70%;
+  width: 60%;
   /* background-color: blue; */
   display: flex;
   flex-direction: column;
@@ -308,9 +308,18 @@
 
 .recommendation_container {
   height: 100vh;
-  width: 30%;
+  width: 25%;
   border-left: 1px solid var(--primary-color);
   /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.recommendation_container::-webkit-scrollbar {
+  display: none;
 }
 
 .sidebar_full_screen {
@@ -329,7 +338,7 @@
   .sidebar_full_screen {
     padding: 0 20px 0 20px;
     height: 100vh;
-    width: 30%;
+    width: 15%;
     background-color: var(--secondary-color);
     display: block;
     display: flex;
@@ -362,7 +371,7 @@
   scale: 1.05;
 }
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1300px) {
   .recommendation_container {
     display: none;
   }
@@ -395,6 +404,7 @@
   height: auto;
   width: 80%;
   border-radius: 10px;
+  font-size: 1rem;
 }
 
 .post_identity {
@@ -434,6 +444,7 @@
   justify-content: space-between;
   align-items: flex-start;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .like_comment_section {
@@ -449,7 +460,8 @@
 }
 
 .post_images {
-  height: 500px;
+  height: 300px;
+  /* max-height: 400px; */
   /* min-height: 500px; */
   width: 100%;
   position: relative;
@@ -465,7 +477,7 @@
 }
 
 .post_images img {
-  max-height: 500px;
+  max-height: 300px;
   max-width: 100%;
   /* object-fit: cover; */
   /* background-position: ; */
@@ -492,6 +504,7 @@
   background-color: var(--secondary-color);
   color: var(--primary-color);
   border-radius: 5px;
+  cursor: pointer;
   /* transition: 0.5s; */
 }
 
@@ -501,9 +514,9 @@
   border: 1px solid var(--primary-color);
 } */
 
-/* .like_icon {
-  font-size: 30px;
-} */
+.like_icon {
+  font-size: 25px;
+}
 
 .comment_section {
   height: 50px;
@@ -593,4 +606,294 @@
 
 .swipe_right {
   font-size: 50px;
+}
+
+/* for recommendation container */
+
+/* user intro container in recommendations */
+
+.user_intro_container {
+  margin: 10px 0px 10px 0px;
+  padding: 10px;
+  height: 70px;
+  width: 90%;
+  border: 1px solid var(--primary-color);
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  /* justify-content: space-around; */
+  align-items: center;
+  position: relative;
+}
+
+.user_intro_container img {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+}
+
+.user_identity {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.recommendation_follow_btn {
+  padding: 5px;
+  width: 20%;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  position: absolute;
+  top: 32%;
+  right: 30px;
+}
+
+.recommendation_container h1 {
+  margin-top: 20px;
+  color: var(--primary-color);
+}
+
+/* for self profile */
+.profile_container {
+  height: auto;
+  width: 100vw;
+  /* background-color: #c7e0f0; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 50px;
+}
+
+/* .profile_container::-webkit-scrollbar {
+  display: none;
+} */
+
+.profile_identity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile_identity > img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 5px solid var(--primary-color);
+  box-shadow: 10px 10px 20px rgb(231, 231, 231);
+  margin-bottom: 10px;
+}
+
+.user_name {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.profile_identity p {
+  /* font-weight: bold; */
+  font-size: 20px;
+}
+
+.profile_follow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: ; */
+  flex-wrap: wrap;
+  gap: 70px;
+  /* background-color: red; */
+  padding: 10px;
+}
+
+.following {
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.following:hover {
+  border-bottom: 2px solid var(--primary-color);
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.followers {
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.followers:hover {
+  border-bottom: 2px solid var(--primary-color);
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* for following modal */
+.modal,
+.overlay {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  /* background-color: #c7e0f0; */
+  /* z-index: 99; */
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  /* opacity: 70%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  background-color: #38abf351;
+  /* opacity: 70%; */
+}
+
+.following_modal_content {
+  padding: 20px;
+  height: 400px;
+  width: 300px;
+  /* border: 1px solid black; */
+  background-color: white;
+  /* opacity: revert; */
+  box-shadow: 5px 5px 10px rgb(140, 145, 145);
+  position: relative;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.following_modal_content::-webkit-scrollbar {
+  display: none;
+}
+
+.following_list_modal::-webkit-scrollbar {
+  display: none;
+}
+
+.following_modal_content h4 {
+  /* position: fixed; */
+  margin-bottom: 10px;
+}
+
+.following_list_modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  /* background-color: red; */
+  overflow-y: scroll;
+}
+
+.following_modal_content button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+}
+
+.close-modal-btn {
+  color: rgb(243, 144, 144);
+  font-size: 40px;
+}
+
+/* for followers modal */
+.modal,
+.overlay {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  /* background-color: #c7e0f0; */
+  /* z-index: 99; */
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  /* opacity: 70%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  background-color: #38abf351;
+  /* opacity: 70%; */
+}
+
+.followers_modal_content {
+  padding: 20px;
+  height: 400px;
+  width: 300px;
+  /* border: 1px solid black; */
+  background-color: white;
+  /* opacity: revert; */
+  box-shadow: 5px 5px 10px rgb(140, 145, 145);
+  position: relative;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.followers_modal_content h4 {
+  /* position: fixed; */
+  margin-bottom: 10px;
+}
+
+.followers_list_modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  /* background-color: red; */
+  overflow-y: scroll;
+}
+
+.followers_modal_content::-webkit-scrollbar {
+  display: none;
+}
+
+.followers_list_modal::-webkit-scrollbar {
+  display: none;
+}
+
+.followers_modal_content button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+}
+
+.close-modal-btn {
+  color: rgb(243, 144, 144);
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.profile_post_section {
+  height: auto;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile_posts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }

@@ -18,7 +18,7 @@ const Post = ({ props }) => {
   const cookie = cookies.get("jwtToken");
   const [comment, setComment] = useState("");
   const [commentList, setCommentList] = useState([]);
-  const [seeMore, setSeeMore] = useState(false);
+  const [seeMore, setSeeMore] = useState(true);
 
   const makeComment = (event) => {
     let newText = event.target.value;
@@ -123,9 +123,12 @@ const Post = ({ props }) => {
                 setSeeMore(!seeMore);
               }}
             >
-              {seeMore
+              {props.caption.length > 300 && seeMore
+                ? `${props.caption.substring(0, 300)}......Read More`
+                : props.caption}
+              {/* {seeMore
                 ? props.caption
-                : `${props.caption.substring(0, 300)}.....`}
+                : `${props.caption.substring(0, 300)}...Read More`} */}
               {/* <button>{seeMore ? "See less" : "See more"}</button> */}
             </p>
           ) : (

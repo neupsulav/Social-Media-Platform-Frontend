@@ -4,6 +4,7 @@ import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import Error from "./Pages/Error";
 import Home from "./Pages/Home";
+import SelfProfile from "./Pages/SelfProfile";
 
 const App = () => {
   return (
@@ -11,8 +12,9 @@ const App = () => {
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/*" element={<Error />} />
+        <Route path="/profile" element={<SelfProfile />} />
       </Routes>
     </>
   );

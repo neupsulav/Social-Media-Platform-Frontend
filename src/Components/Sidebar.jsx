@@ -29,7 +29,7 @@ const Sidebar = () => {
             {Links.map((item) => {
               const Icon = item.icon;
               return (
-                <Link key={item.id} to="" className="link">
+                <Link key={item.id} to="item.to" className="link">
                   <Icon />
                   <p>{item.name}</p>
                 </Link>
