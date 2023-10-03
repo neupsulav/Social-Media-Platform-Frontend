@@ -7,7 +7,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import Post from "../Components/Post";
 import { useParams } from "react-router-dom";
 
-const SelfProfile = () => {
+const UserProfile = () => {
   const { username } = useParams();
   const cookies = new Cookies();
   const cookie = cookies.get("jwtToken");
@@ -18,12 +18,14 @@ const SelfProfile = () => {
   // to check if to show followers modal
   const [followersModal, setFollowersModal] = useState(false);
   // for list of people following
-  const [following, setFollowing] = useState([]);
+  const [following, setFollowing] = useState({});
   // for list of followers
-  const [followers, setFollowers] = useState([]);
+  const [followers, setFollowers] = useState({});
 
   const fetchProfileData = async () => {
-    const res = await fetch(`api/user/profile/${username}`, {
+    setFollowersModal(false);
+    setFollowingModal(false);
+    const res = await fetch(`/api/user/profile/${username}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${cookie}`,
@@ -33,12 +35,13 @@ const SelfProfile = () => {
     const response = await res.json();
     // console.log(response);
     setProfileData(response);
-    // console.log(profileData.userProfileData._id);
+
+    // console.log(profileData);
     setIfDataFetched(true);
   };
 
   const fetchFollowingData = async () => {
-    const res = await fetch(`api/user/profile/following/${username}`, {
+    const res = await fetch(`/api/user/profile/following/${username}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${cookie}`,
@@ -51,7 +54,7 @@ const SelfProfile = () => {
   };
 
   const fetchFollowersData = async () => {
-    const res = await fetch(`api/user/profile/followers/${username}`, {
+    const res = await fetch(`/api/user/profile/followers/${username}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${cookie}`,
@@ -62,14 +65,12 @@ const SelfProfile = () => {
     // console.log(response);
     setFollowers(response);
   };
-  //   console.log(followers);
-  //   console.log(following);
 
   useEffect(() => {
     fetchProfileData();
     fetchFollowingData();
     fetchFollowersData();
-  }, []);
+  }, [username]);
 
   if (ifDataFetched) {
     return (
@@ -163,4 +164,4 @@ const SelfProfile = () => {
   }
 };
 
-export default SelfProfile;
+export default UserProfile;

@@ -44,6 +44,7 @@ const SelfProfile = () => {
     });
 
     const response = await res.json();
+    // console.log(response);
     setFollowing(response);
   };
 

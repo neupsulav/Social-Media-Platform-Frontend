@@ -1,23 +1,9 @@
 import React from "react";
-// import Cookies from "universal-cookie";
 import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 const UserIntro = ({ props }) => {
   // const navigate = useNavigate();
-  // const cookies = new Cookies();
-  // const cookie = cookies.get("jwtToken");
-
-  // const followUser = async (id) => {
-  //   await fetch(`api/user/follow/${id}`, {
-  //     method: "PATCH",
-  //     headers: {
-  //       Authorization: `Bearer ${cookie}`,
-  //     },
-  //   });
-  // };
-
-  // console.log(props._id);
   return (
     <>
       <div className="user_intro_container">
@@ -32,6 +18,15 @@ const UserIntro = ({ props }) => {
                 <b>{props.name}</b>
               </p>
             </Link>
+
+            {/* <p
+              onClick={() => {
+                return navigate(`/${props._id}`);
+              }}
+              className="user_intro_name"
+            >
+              <b>{props.name}</b>
+            </p> */}
 
             {/* <p
               onClick={() => {

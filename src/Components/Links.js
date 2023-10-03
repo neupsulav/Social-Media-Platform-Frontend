@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 
