@@ -21,6 +21,8 @@ const UserProfile = () => {
   const [following, setFollowing] = useState({});
   // for list of followers
   const [followers, setFollowers] = useState({});
+  // to check if following
+  const [isFollowing, setIsFollowing] = useState();
 
   const fetchProfileData = async () => {
     setFollowersModal(false);
@@ -33,8 +35,16 @@ const UserProfile = () => {
     });
 
     const response = await res.json();
+
     setProfileData(response);
     setIfDataFetched(true);
+
+    // for follow button
+    if (response.isFollowing) {
+      setIsFollowing(true);
+    } else {
+      setIsFollowing(false);
+    }
   };
 
   const fetchFollowingData = async () => {
@@ -61,6 +71,18 @@ const UserProfile = () => {
     setFollowers(response);
   };
 
+  const followUser = async () => {
+    await fetch(`api/user/follow/${profileData.userProfileData._id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${cookie}`,
+      },
+    });
+
+    // update followers list
+    fetchFollowersData();
+  };
+
   useEffect(() => {
     fetchProfileData();
     fetchFollowingData();
@@ -76,6 +98,17 @@ const UserProfile = () => {
             <p className="user_name">{profileData.userProfileData.name}</p>
             <p>{profileData.userProfileData.username}</p>
             <p>{profileData.userProfileData.email}</p>
+
+            {/* follow button */}
+            <button
+              className="follow_btn"
+              onClick={() => {
+                setIsFollowing(!isFollowing);
+                followUser();
+              }}
+            >
+              {isFollowing ? "Unfollow" : "Follow"}
+            </button>
             <div className="profile_follow">
               <div
                 className="following"
