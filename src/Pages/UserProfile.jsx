@@ -5,9 +5,10 @@ import Cookies from "universal-cookie";
 import UserIntro from "../Components/UserIntro";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import Post from "../Components/Post";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
+  const navigate = useNavigate();
   const { username } = useParams();
   const cookies = new Cookies();
   const cookie = cookies.get("jwtToken");
@@ -25,6 +26,9 @@ const UserProfile = () => {
   const [isFollowing, setIsFollowing] = useState();
 
   const fetchProfileData = async () => {
+    if (!cookie) {
+      navigate("/login");
+    }
     setFollowersModal(false);
     setFollowingModal(false);
     const res = await fetch(`/api/user/profile/${username}`, {

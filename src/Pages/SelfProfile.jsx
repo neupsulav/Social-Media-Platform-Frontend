@@ -5,10 +5,13 @@ import Cookies from "universal-cookie";
 import UserIntro from "../Components/UserIntro";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import Post from "../Components/Post";
+import { useNavigate } from "react-router-dom";
 
 const SelfProfile = () => {
+  const navigate = useNavigate();
   const cookies = new Cookies();
   const cookie = cookies.get("jwtToken");
+
   const [profileData, setProfileData] = useState();
   const [ifDataFetched, setIfDataFetched] = useState(false);
   // to check if to show following modal
@@ -21,6 +24,9 @@ const SelfProfile = () => {
   const [followers, setFollowers] = useState({});
 
   const fetchProfileData = async () => {
+    if (!cookie) {
+      navigate("/login");
+    }
     const res = await fetch("api/profile", {
       method: "GET",
       headers: {
