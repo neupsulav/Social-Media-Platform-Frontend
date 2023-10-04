@@ -133,10 +133,6 @@ const Post = ({ props }) => {
               {props.caption.length > 300 && seeMore
                 ? `${props.caption.substring(0, 300)}......Read More`
                 : props.caption}
-              {/* {seeMore
-                ? props.caption
-                : `${props.caption.substring(0, 300)}...Read More`} */}
-              {/* <button>{seeMore ? "See less" : "See more"}</button> */}
             </p>
           ) : (
             <div></div>
@@ -168,33 +164,6 @@ const Post = ({ props }) => {
             </div>
             <img src={props.images[imgIndex]} alt="" />
           </div>
-
-          {/* {props.images ? (
-            <div className="post_images">
-              <div
-                className={
-                  props.images.length > 1
-                    ? "swipe_btn swipe_left"
-                    : "swipe_btn swipe_left hide_btn"
-                }
-              >
-                <CiSquareChevLeft onClick={leftButtonClick} />
-              </div>
-
-              <div
-                className={
-                  props.images.length > 1
-                    ? "swipe_btn swipe_right"
-                    : "swipe_btn swipe_right hide_btn"
-                }
-              >
-                <CiSquareChevRight onClick={rightButtonClick} />
-              </div>
-              <img src={props.images[imgIndex]} alt="" />
-            </div>
-          ) : (
-            <div></div>
-          )} */}
         </div>
         <div className="like_comment_section">
           <div className="like_section">

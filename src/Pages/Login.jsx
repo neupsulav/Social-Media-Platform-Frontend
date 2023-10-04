@@ -128,8 +128,7 @@ const Login = () => {
               </div>
               <div>
                 <button type="submit" onClick={postData} className="login_btn">
-                  {" "}
-                  Login{" "}
+                  Login
                 </button>
               </div>
               <div className="register_message">

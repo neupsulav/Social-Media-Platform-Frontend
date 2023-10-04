@@ -29,9 +29,7 @@ const SelfProfile = () => {
     });
 
     const response = await res.json();
-    // console.log(response);
     setProfileData(response);
-    // console.log(profileData);
     setIfDataFetched(true);
   };
 
@@ -44,7 +42,6 @@ const SelfProfile = () => {
     });
 
     const response = await res.json();
-    // console.log(response);
     setFollowing(response);
   };
 
@@ -57,7 +54,6 @@ const SelfProfile = () => {
     });
 
     const response = await res.json();
-    // console.log(response);
     setFollowers(response);
   };
 

@@ -17,11 +17,9 @@ const RecommendationContainer = () => {
       },
     });
 
-    // console.log(res);
     const response = await res.json();
-    // console.log(response);
+
     setProfiles(response);
-    // console.log(profiles);
   };
 
   useEffect(() => {

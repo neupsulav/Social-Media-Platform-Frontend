@@ -158,14 +158,6 @@ const Register = () => {
                   Register{" "}
                 </button>
               </div>
-              {/* <div className="register_message">
-                <p>
-                  Haven't registered yet?{" "}
-                  <Link to="/register" className="register_btn_link">
-                    <button> Register</button>
-                  </Link>
-                </p>
-              </div> */}
             </div>
           </div>
         </div>

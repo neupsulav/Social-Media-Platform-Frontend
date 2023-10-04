@@ -1,5 +1,4 @@
 import React from "react";
-// eslint-disable-next-line no-unused-vars
 import { AiOutlineHome } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Links from "./Links";

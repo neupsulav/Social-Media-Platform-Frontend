@@ -35,31 +35,6 @@ const Sidebar = () => {
                 </Link>
               );
             })}
-
-            {/* <Link to="" className="link">
-              <AiOutlineHome />
-              <p>Home</p>
-            </Link>
-
-            <Link to="" className="link">
-              <AiOutlineHome />
-              <p>Home</p>
-            </Link>
-
-            <Link to="" className="link">
-              <AiOutlineHome />
-              <p>Home</p>
-            </Link>
-
-            <Link to="" className="link">
-              <AiOutlineHome />
-              <p>Home</p>
-            </Link>
-
-            <Link to="" className="link">
-              <AiOutlineHome />
-              <p>Home</p>
-            </Link> */}
           </div>
         </div>
       </div>
