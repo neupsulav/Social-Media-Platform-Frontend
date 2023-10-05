@@ -205,7 +205,7 @@
 
 .navbar_container {
   background-color: var(--primary-color);
-  height: 40px;
+  height: 45px;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -223,7 +223,7 @@
 
 .hamburger_icon {
   color: white;
-  font-size: 40px;
+  font-size: 30px;
   position: fixed;
   top: 10px;
   left: 10px;
@@ -854,4 +854,146 @@
   color: white;
   border: var(--primary-color);
   cursor: pointer;
+}
+
+/* create post button */
+.create_post_btn {
+  height: 60px;
+  width: 200px;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+  position: fixed;
+  bottom: 50px;
+  right: -140px;
+  transition: 0.8s;
+  color: white;
+  cursor: pointer;
+  border-radius: 15px 0px 0px 15px;
+}
+
+.create_post_btn p {
+  font-size: large;
+  font-weight: bold;
+}
+
+.create_post_btn:hover {
+  right: 0px;
+}
+
+.create_post_icon {
+  font-size: 30px;
+}
+
+/* for create post modal */
+
+.create_post_modal_content {
+  height: 400px;
+  width: 600px;
+  background-color: white;
+}
+
+/* .close_post_modal_btn {
+  position: relative;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+} */
+
+.create_post_modal_content {
+  position: absolute;
+}
+
+.create_post_modal_content h2 {
+  text-align: center;
+  margin-top: 10px;
+  color: #1f9bed;
+}
+
+.close_post_modal_btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  color: red;
+  cursor: pointer;
+}
+
+.create_post_form {
+  font-size: 30px;
+  margin-top: 30px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.post_caption_container {
+  color: var(--primary-color);
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  padding: 5px;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.post_caption_container input {
+  outline: none;
+  border: none;
+}
+
+.post_image_container {
+  /* border: 1px solid var(--primary-color); */
+  /* padding: 8px 0px 8px 15px; */
+  padding: 10px;
+  border-radius: 15px;
+  /* text-align: center; */
+  /* padding-top: auto;
+  padding-bottom: auto; */
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: var(--primary-color);
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: var(--primary-color);
+}
+
+.create_post_submit_btn {
+  background-color: var(--primary-color);
+  color: white;
+  height: 40px;
+  width: 120px;
+  font-size: 15px;
+  font-weight: bolder;
+  border: none;
+  margin-top: 50px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.create_post_submit_btn:hover {
+  color: var(--primary-color);
+  background-color: white;
+  border: 1px solid var(--primary-color);
+  scale: 1.05;
 }

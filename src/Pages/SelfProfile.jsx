@@ -145,7 +145,7 @@ const SelfProfile = () => {
                   })}
                 </div>
                 <button
-                  className="close-modal-btn"
+                  className="close_modal_btn"
                   onClick={() => {
                     setFollowersModal(!followersModal);
                   }}
