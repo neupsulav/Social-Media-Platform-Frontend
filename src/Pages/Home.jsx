@@ -7,23 +7,53 @@ import { MdPostAdd } from "react-icons/md";
 import { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsCardText } from "react-icons/bs";
+import Cookies from "universal-cookie";
 
 const Home = () => {
+  // for cookie
+  const cookies = new Cookies();
+  const cookie = cookies.get("jwtToken");
+
   // to show or hide create post modal
   const [createPost, setCreatePost] = useState(false);
 
   // to store post data
-  const [data, setData] = useState({
-    caption: "",
-    images: [],
-  });
+  const [caption, setCaption] = useState("");
+  const [postImages, setPostImages] = useState([]);
 
-  let name, value;
-  const handleInputs = (event) => {
-    name = event.target.name;
-    value = event.target.value;
+  const handleCaptionInput = (event) => {
+    setCaption(event.target.value);
+  };
 
-    // setData({ ...data, [name]: value });
+  const handleImageInput = (event) => {
+    const chosenFiles = Array.prototype.slice.call(event.target.files);
+    setPostImages(chosenFiles);
+  };
+
+  const submitData = async () => {
+    const formData = new FormData();
+
+    for (let i = 0; i < postImages.length; i++) {
+      formData.append(postImages[i]);
+    }
+
+    // console.log(postImages);
+
+    const res = await fetch("/api/post/create", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${cookie}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        caption: caption,
+        images: formData,
+      }),
+    });
+
+    const response = await res.json();
+    console.log("done");
+    console.log(response);
   };
 
   return (
@@ -56,8 +86,8 @@ const Home = () => {
                       type="text"
                       name="caption"
                       placeholder="Write your caption here..."
-                      onChange={handleInputs}
-                      value={data.caption}
+                      value={caption}
+                      onChange={handleCaptionInput}
                     />
                   </div>
 
@@ -67,11 +97,16 @@ const Home = () => {
                       type="file"
                       accept="images/*"
                       multiple="multiple"
+                      onChange={handleImageInput}
                     />
                   </div>
 
                   <div>
-                    <button type="submit" className="create_post_submit_btn">
+                    <button
+                      type="submit"
+                      className="create_post_submit_btn"
+                      onClick={submitData}
+                    >
                       Create post
                     </button>
                   </div>
